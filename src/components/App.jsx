@@ -8,10 +8,10 @@ export const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route index element={<MainPage/>} />
-          <Route path='catalog' element={<CatalogPage/>} />
-          <Route path='favorite' element={<FavoritePage/>} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<MainPage />} />
+          <Route path="catalog" element={<CatalogPage />} />
+          <Route path="favorite" element={<FavoritePage />} />
         </Route>
       </Routes>
     </div>

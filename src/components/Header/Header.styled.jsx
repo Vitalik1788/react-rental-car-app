@@ -6,23 +6,32 @@ const navLink = NavLink;
 export const HeaderStyled = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding-left: 15px;
   padding-right: 15px; 
 `;
 
+export const IconTitle = styled.p`
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 16px;
+  padding-bottom: 5px;
+`;
+
 export const Nav = styled.nav`
   display: flex;
-  gap: 25px;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-left: auto;
   
 `
 
 export const NavLinkStyled = styled(navLink)`
   text-decoration: none;
   font-family: "Roboto";
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 500;
   color: black;
+  
 
   :hover, :focus {
     color: red; 

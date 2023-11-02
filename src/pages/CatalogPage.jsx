@@ -1,10 +1,14 @@
+import CatalogList from "components/CatalogList/CatalogList";
 
 
 
 const CatalogPage = () => {
   
   return (
-    <h1>CATALOG PAGE</h1>
+    <>
+    <CatalogList />
+    </>
+    
   )
 }
 
