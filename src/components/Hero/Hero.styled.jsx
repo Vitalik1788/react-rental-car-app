@@ -3,7 +3,7 @@ import heroImage from '../../images/car_trip.jpg';
 
 
 export const HeroBox = styled.section`
-  height: 600px;
+  height: 700px;
   background-image: url(${heroImage});
   background-position: center;
   background-size: cover;

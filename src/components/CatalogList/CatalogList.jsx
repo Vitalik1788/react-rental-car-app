@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCars } from "redux/carsOperation";
 import { selectError, selectItems } from "redux/selectors";
-import { CatalogItem, Model, List, Section, CatalogImage } from './CatalogList.styled';
+import { CatalogItem, Model, List, Section, CatalogImage, Button, CarDetails } from './CatalogList.styled';
 
 const CatalogList = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,14 @@ const CatalogList = () => {
               rentalPrice,
               address,
               rentalCompany,
+              type,
+              mileage,
+              functionalities,
             }) => {
+              const index = address.indexOf(',');
+              const city = address.slice(index + 2);
+                            
+              
               return (
                 <CatalogItem key={id}>
                   <CatalogImage src={img} alt={make} />
@@ -41,9 +48,11 @@ const CatalogList = () => {
                     </Model>
                     <Model>{rentalPrice}</Model>
                   </div>
-                  <p>
-                    {address} | {rentalCompany}
-                  </p>
+                  <CarDetails>
+                    {city} | {rentalCompany} | {type} | {mileage} |
+                    {functionalities[0]}
+                  </CarDetails>
+                  <Button type="button">Learn more</Button>
                 </CatalogItem>
               );
             }

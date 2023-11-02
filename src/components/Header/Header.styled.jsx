@@ -6,8 +6,8 @@ const navLink = NavLink;
 export const HeaderStyled = styled.header`
   display: flex;
   align-items: center;
-  padding-left: 15px;
-  padding-right: 15px; 
+  padding-left: 20px;
+  padding-right: 20px; 
 `;
 
 export const IconTitle = styled.p`
@@ -22,19 +22,27 @@ export const Nav = styled.nav`
   flex-wrap: wrap;
   gap: 40px;
   margin-left: auto;
-  
+
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    gap: 0;
+  }  
 `
 
 export const NavLinkStyled = styled(navLink)`
   text-decoration: none;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-size: 22px;
   font-weight: 500;
   color: black;
-  
 
-  :hover, :focus {
-    color: red; 
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+    margin-bottom: 5px;
   }
 
-`
+  :hover,
+  :focus {
+    color: red;
+  }
+`;
