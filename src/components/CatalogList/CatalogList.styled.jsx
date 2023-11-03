@@ -8,7 +8,7 @@ const modal = Modal;
 export const StyleModal = styled(modal)`
   position: relative;
   padding: 40px;
-  width: 541px;
+  max-width: 541px;
   height: auto;
   height:fit-content;
   height: auto;
@@ -24,10 +24,10 @@ export const StyleModal = styled(modal)`
 
 export const ModalIMG = styled.img`
   margin-bottom: 14px;
-  width: 461px;
+  width: 100%;
   height: 288px;
   border-radius: 14px;
-  box-sizing: border-box;  
+  box-sizing: border-box;
 `;
 
 export const RentalConditionList = styled.ul`
@@ -95,6 +95,7 @@ export const CatalogItem = styled.li`
 `;
 
 export const CatalogImage = styled.img`
+  width: 100%;
   border-radius: 14px;
   margin-bottom: 14px;
 `;
@@ -129,5 +130,24 @@ export const Button = styled.button`
   :hover,
   :focus {
     background-color: #0b44cd;
+  }
+`;
+
+export const LoadMore = styled.button`
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Manrope';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #3470ff;
+  background-color: transparent;
+  text-decoration: underline;
+  cursor: pointer;
+
+  :hover,
+  :focus {
+    color: #0b44cd;
   }
 `;

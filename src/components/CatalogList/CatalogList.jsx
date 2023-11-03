@@ -14,6 +14,7 @@ import {
   ModalBtn,
   RentalConditionItem,
   RentalConditionList,
+  LoadMore,
 } from './CatalogList.styled';
 import { AiOutlineHeart, AiOutlineClose } from 'react-icons/ai';
 
@@ -92,7 +93,7 @@ const CatalogList = () => {
               }
             )}
         </List>
-        <button type="button">Load More</button>
+        <LoadMore type="button">Load More</LoadMore>
       </Section>
 
       <StyleModal
