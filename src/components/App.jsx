@@ -4,7 +4,10 @@ import MainPage from 'pages/MainPage';
 import CatalogPage from 'pages/CatalogPage';
 import FavoritePage from 'pages/FavoritePage';
 
+
 export const App = () => {
+
+
   return (
     <div>
       <Routes>

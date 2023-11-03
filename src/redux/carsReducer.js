@@ -5,6 +5,7 @@ const carsSlice = createSlice({
   name: 'cars',
   initialState: {
     items: null,
+    item: {},
     isLoading: false,
     error: null,
   },
@@ -20,7 +21,7 @@ const carsSlice = createSlice({
       .addCase(getCars.rejected, (state, {payload}) => {
         state.error = payload;
         state.isLoading = false;
-    })
+      })      
   },
 });
 
