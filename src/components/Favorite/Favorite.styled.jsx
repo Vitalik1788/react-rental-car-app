@@ -93,6 +93,7 @@ export const CatalogItem = styled.li`
 
 export const CatalogImage = styled.img`
   width: 100%;
+  height: 320px;
   border-radius: 14px;
   margin-bottom: 14px;
 `;

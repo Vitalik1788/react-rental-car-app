@@ -15,31 +15,69 @@ import {
   RentalConditionItem,
   RentalConditionList,
   LoadMore,
+  DropdownBox,
+  DropdownLabel,
 } from './CatalogList.styled';
 import { AiOutlineHeart, AiOutlineClose } from 'react-icons/ai';
 import Spinner from 'components/Spinner/Spinner';
-import { addToFavorite } from 'redux/carsOperation';
+import { addToFavorite, loadMore } from 'redux/carsOperation';
 import { ToastContainer, toast } from 'react-toastify';
+import Dropdown from 'react-dropdown';
+
+const options = [
+  'Buick',
+  'Volvo',
+  'HUMMER',
+  'Subaru',
+  'Mitsubishi',
+  'Nissan',
+  'Lincoln',
+  'GMC',
+  'Hyundai',
+  'MINI',
+  'Bentley',
+  'Mercedes-Benz',
+  'Aston Martin',
+  'Pontiac',
+  'Lamborghini',
+  'Audi',
+  'BMW',
+  'Chevrolet',
+  'Mercedes-Benz',
+  'Chrysler',
+  'Kia',
+  'Land',
+];
+const defaultOption = options[0];
 
 const CatalogList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [cityCar, setCityCar] = useState('');
   const [modalCar, setModalCar] = useState("");
+  const [accessories, setAccessories] = useState(null);
+  const [functionalities, setFunctionalities] = useState(null);
   const error = useSelector(selectError);
   const cars = useSelector(selectItems);
   const favorCars = useSelector(selectFavorite);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
-
+  const [page, setPage] = useState(2);
   
 
   function modalOpen(id) {
-    let carChoice = cars.find(car => car.id === id);
+    let carChoice = cars.flat().find(car => car.id === id);
     setModalCar(carChoice);
     const indexCar = carChoice.address.indexOf(',');
     const cityCar = carChoice.address.slice(indexCar + 2);
     const city = cityCar.split(',', 1);
     setCityCar(city);
+
+    const acsseor = carChoice.accessories.map(el => " | " + el);
+    setAccessories(acsseor);
+
+    const funtional = carChoice.functionalities.map(el => ' | ' + el);
+    setFunctionalities(funtional);
+
     setIsOpen(true);
   }
 
@@ -48,7 +86,7 @@ const CatalogList = () => {
   }
 
   function addCarFavorite(id) {
-    let carChoice = cars.find(car => car.id === id);
+    let carChoice = cars.flat().find(car => car.id === id);
     const inFavorit = favorCars.some(e => e.id === id)
     if (inFavorit === true) {
       return toast.info('The car is already added to the favorites');
@@ -58,7 +96,28 @@ const CatalogList = () => {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <DropdownBox>
+        <DropdownLabel>Car brand</DropdownLabel>
+        <Dropdown
+          options={options}
+          // onChange={this._onSelect}
+          value={defaultOption}
+          placeholder="Select an option"
+        />
+      </DropdownBox>
+
       {isLoading ? (
         <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
           <Spinner />
@@ -68,61 +127,72 @@ const CatalogList = () => {
           <List>
             {cars &&
               !error &&
-              cars.map(
-                ({
-                  id,
-                  img,
-                  make,
-                  model,
-                  year,
-                  rentalPrice,
-                  address,
-                  rentalCompany,
-                  type,
-                  mileage,
-                  functionalities,
-                }) => {
-                  const index = address.indexOf(',');
-                  const city = address.slice(index + 2).split(',', 1);
+              cars
+                .flat()
+                .map(
+                  ({
+                    id,
+                    img,
+                    make,
+                    model,
+                    year,
+                    rentalPrice,
+                    address,
+                    rentalCompany,
+                    type,
+                    mileage,
+                    functionalities,
+                  }) => {
+                    const index = address.indexOf(',');
 
-                  return (
-                    <CatalogItem key={id}>
-                      <CatalogImage src={img} alt={make} />
-                      <div
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                        }}
-                      >
-                        <Model>
-                          {make} {model}, {year}
-                        </Model>
-                        <Model>{rentalPrice}</Model>
-                      </div>
-                      <CarDetails>
-                        {city} | Ukraine | {rentalCompany} | {type} |{' '}
-                        {mileage.toLocaleString('de-DE')} | {functionalities[0]}
-                      </CarDetails>
-                      <Button type="button" onClick={() => modalOpen(id)}>
-                        Learn more
-                      </Button>
-                      <AiOutlineHeart
-                        size={18}
-                        color="white"
-                        style={{
-                          position: 'absolute',
-                          top: '14px',
-                          right: '14px',
-                          cursor: 'pointer',
-                        }}
-                        onClick={() => addCarFavorite(id)}
-                      />
-                    </CatalogItem>
-                  );
-                }
-              )}
+                    return (
+                      <CatalogItem key={id}>
+                        <CatalogImage src={img} alt={make} />
+                        <div
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <Model>
+                            {make} {model}, {year}
+                          </Model>
+                          <Model>{rentalPrice}</Model>
+                        </div>
+                        <CarDetails>
+                          {address.slice(index + 2).split(',', 1)} | Ukraine |{' '}
+                          {rentalCompany} | {type} |{' '}
+                          {mileage.toLocaleString('de-DE')} |{' '}
+                          {functionalities[0]}
+                        </CarDetails>
+                        <Button type="button" onClick={() => modalOpen(id)}>
+                          Learn more
+                        </Button>
+                        <AiOutlineHeart
+                          size={18}
+                          color="white"
+                          style={{
+                            position: 'absolute',
+                            top: '14px',
+                            right: '14px',
+                            cursor: 'pointer',
+                          }}
+                          onClick={() => addCarFavorite(id)}
+                        />
+                      </CatalogItem>
+                    );
+                  }
+                )}
           </List>
-          <LoadMore type="button">Load More</LoadMore>
+          <LoadMore
+            type="button"
+            onClick={() => {
+              setPage(prev => prev + 1);
+              dispatch(loadMore(page));
+            }}
+          >
+            Load More
+          </LoadMore>
         </Section>
       )}
 
@@ -193,7 +263,7 @@ const CatalogList = () => {
             color: 'rgba(18, 20, 23, 0.5)',
           }}
         >
-          {modalCar.accessories}
+          {accessories}
         </p>
         <p
           style={{
@@ -203,7 +273,7 @@ const CatalogList = () => {
             marginBottom: 24,
           }}
         >
-          {modalCar.functionalities}
+          {functionalities}
         </p>
         <h3 style={{ fontSize: 14, fontFamily: 'Manrope', marginBottom: 8 }}>
           Rental Conditions:{' '}

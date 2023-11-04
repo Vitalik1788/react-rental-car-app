@@ -7,13 +7,25 @@ export const getCars = createAsyncThunk(
   "cars/getAllCars",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/cars');
+      const { data } = await axios.get('/cars?limit=12&page=1');
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
+
+export const loadMore = createAsyncThunk(
+  "cars/loadMore",
+  async (page, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`/cars?limit=12&page=${page}`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+)
 
 export const addToFavorite = createAsyncThunk(
   "cars/addCar",

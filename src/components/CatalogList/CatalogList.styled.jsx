@@ -71,6 +71,20 @@ export const Section = styled.section`
   padding: 50px 20px;
 `;
 
+export const DropdownBox = styled.div`
+  max-width: 224px;
+  margin-left: auto;
+  margin-right: auto;
+
+`
+export const DropdownLabel = styled.p`
+  font-family: "Manrope";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+`;
+
+
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -95,6 +109,7 @@ export const CatalogItem = styled.li`
 `;
 
 export const CatalogImage = styled.img`
+  height: 320px;
   width: 100%;
   border-radius: 14px;
   margin-bottom: 14px;

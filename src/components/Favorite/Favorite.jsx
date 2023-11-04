@@ -47,10 +47,9 @@ const Favorite = () => {
   }
 
 
-
   return (
     <>
-      {favoriteCars ? (<Section>
+      {favoriteCars.length !== 0 ? (<Section>
         <List>
           {favoriteCars &&
             !error &&
