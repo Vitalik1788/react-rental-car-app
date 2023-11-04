@@ -1,5 +1,5 @@
 import { Section } from 'components/CatalogList/CatalogList.styled';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectError, selectFavorite } from 'redux/selectors';
 import {
   Button,
@@ -14,8 +14,9 @@ import {
   RentalConditionList,
   StyleModal,
 } from './Favorite.styled';
-import { AiOutlineClose, AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineClose } from 'react-icons/ai';
 import { useState } from 'react';
+import { removeFromFavorite } from 'redux/carsOperation';
 
 const Favorite = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +24,7 @@ const Favorite = () => {
   const [modalCar, setModalCar] = useState('');
   const favoriteCars = useSelector(selectFavorite);  
   const error = useSelector(selectError);   
+  const dispatch = useDispatch();
 
  
 
@@ -38,6 +40,10 @@ const Favorite = () => {
 
   function modalClose() {
     setIsOpen(false);
+  }
+
+  function deleteCar(id) {
+    dispatch(removeFromFavorite(id))
   }
 
 
@@ -86,15 +92,16 @@ const Favorite = () => {
                     <Button type="button" onClick={() => modalOpen(id)}>
                       Learn more
                     </Button>
-                    <AiOutlineHeart
+                    <AiFillHeart
                       size={18}
-                      color="white"
+                      color="#3470FF"
                       style={{
                         position: 'absolute',
                         top: '14px',
                         right: '14px',
                         cursor: 'pointer',
                       }}
+                      onClick={() => deleteCar(id)}
                     />
                   </CatalogItem>
                 );

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addToFavorite, getCars } from './carsOperation';
+import { addToFavorite, getCars, removeFromFavorite } from './carsOperation';
 
 const carsSlice = createSlice({
   name: 'cars',
@@ -24,6 +24,9 @@ const carsSlice = createSlice({
       })
       .addCase(addToFavorite.fulfilled, (state, { payload }) => {
         state.favorite.push(payload);
+      })
+      .addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
+      state.favorite = state.favorite.filter((obj) => obj.id !== payload)
     })
   },
 });

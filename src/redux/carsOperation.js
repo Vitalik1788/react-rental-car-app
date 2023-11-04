@@ -28,3 +28,16 @@ export const addToFavorite = createAsyncThunk(
   }
 )
 
+export const removeFromFavorite = createAsyncThunk(
+  "cars/removeCar",
+  async (carId, { rejectWithValue }) => {
+    try {
+      if (carId) {
+        return carId;
+      }
+    } catch (error) {
+      rejectWithValue(error.message)
+    }
+  }
+)
+
