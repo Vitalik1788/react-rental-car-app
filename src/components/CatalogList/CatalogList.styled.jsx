@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 import Modal from 'react-modal';
+import Select from 'react-select';
+
+const select = Select;
 
 //MODAL STYLES
-
 const modal = Modal;
 
 export const StyleModal = styled(modal)`
   position: relative;
   padding: 40px;
   max-width: 541px;
-  height: auto;
-  height:fit-content;
   height: auto;
   border-radius: 24px;
   background-color: #ffffff;
@@ -19,15 +19,23 @@ export const StyleModal = styled(modal)`
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  box-sizing: border-box;
+  box-sizing: border-box;  
+
+  @media screen and (max-width: 480px) {
+    height: 85%;
+  }
+  
 `;
 
 export const ModalIMG = styled.img`
   margin-bottom: 14px;
   width: 100%;
-  height: 288px;
+  height: auto;
   border-radius: 14px;
   box-sizing: border-box;
+  @media screen and (max-width: 480px) {
+    width: 50%;
+  }
 `;
 
 export const RentalConditionList = styled.ul`
@@ -72,17 +80,35 @@ export const Section = styled.section`
 `;
 
 export const DropdownBox = styled.div`
-  max-width: 224px;
+  padding-top: 50px;
   margin-left: auto;
   margin-right: auto;
-
-`
+  
+  `
 export const DropdownLabel = styled.p`
+  margin-bottom: 8px;
   font-family: "Manrope";
   font-size: 14px;
   font-weight: 500;
   line-height: 1.29;
+  `;
+
+export const DropdownInput = styled(select)`
+  width: 224px;
+  margin-right: 18px;
+  font-family: 'Manrope';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  border-radius: 14px;
 `;
+
+export const DropdownBtn = styled.button`
+  padding: 12px 44px 12px 44px;
+  border-radius: 12px;
+  background-color: #3470ff;
+  color: #ffffff;
+`; 
 
 
 export const List = styled.ul`
@@ -126,7 +152,7 @@ export const Model = styled.p`
 
 export const CarDetails = styled.p`
   font-family: 'Manrope';
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
 `;
 

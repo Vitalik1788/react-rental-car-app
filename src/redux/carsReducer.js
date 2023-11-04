@@ -17,9 +17,7 @@ const carsSlice = createSlice({
           ...state,
           items: payload,
           isLoading: false,
-        }
-        // state.items.push(payload);
-        // state.isLoading = false;        
+        }       
       })
       .addCase(getCars.pending, (state, { payload }) => {
         state.isLoading = true;
@@ -33,7 +31,8 @@ const carsSlice = createSlice({
         toast.success("Car added to favorite")
       })
       .addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
-      state.favorite = state.favorite.filter((obj) => obj.id !== payload)
+        const index = state.favorite.findIndex(car => car.id === payload)
+        state.favorite.splice(index, 1);
       })
       .addCase(loadMore.fulfilled, (state, { payload }) => {
         state.items.push(payload);

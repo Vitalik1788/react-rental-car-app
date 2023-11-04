@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectError, selectFavorite, selectIsLoading, selectItems } from 'redux/selectors';
+import {
+  selectError,
+  selectFavorite,
+  selectIsLoading,
+  selectItems,
+  selectVisibleCar,
+} from 'redux/selectors';
 import {
   CatalogItem,
   Model,
@@ -17,53 +23,54 @@ import {
   LoadMore,
   DropdownBox,
   DropdownLabel,
+  DropdownInput,
+  DropdownBtn,
 } from './CatalogList.styled';
 import { AiOutlineHeart, AiOutlineClose } from 'react-icons/ai';
 import Spinner from 'components/Spinner/Spinner';
 import { addToFavorite, loadMore } from 'redux/carsOperation';
 import { ToastContainer, toast } from 'react-toastify';
-import Dropdown from 'react-dropdown';
+import { changeFilter } from 'redux/filterOperation';
 
 const options = [
-  'Buick',
-  'Volvo',
-  'HUMMER',
-  'Subaru',
-  'Mitsubishi',
-  'Nissan',
-  'Lincoln',
-  'GMC',
-  'Hyundai',
-  'MINI',
-  'Bentley',
-  'Mercedes-Benz',
-  'Aston Martin',
-  'Pontiac',
-  'Lamborghini',
-  'Audi',
-  'BMW',
-  'Chevrolet',
-  'Mercedes-Benz',
-  'Chrysler',
-  'Kia',
-  'Land',
+  { value: 'Buick', label: 'Buick' },
+  { value: 'Volvo', label: 'Volvo' },
+  { value: 'HUMMER', label: 'HUMMER' },
+  { value: 'Subaru', label: 'Subaru' },
+  { value: 'Mitsubishi', label: 'Mitsubishi' },
+  { value: 'Nissan', label: 'Nissan' },
+  { value: 'Lincoln', label: 'Lincoln' },
+  { value: 'GMC', label: 'GMC' },
+  { value: 'Hyundai', label: 'Hyundai' },
+  { value: 'MINI', label: 'MINI' },
+  { value: 'Bentley', label: 'Bentley' },
+  { value: 'Mercedes-Benz', label: 'Mercedes-Benz' },
+  { value: 'Aston Martin', label: 'Aston Martin' },
+  { value: 'Pontiac', label: 'Pontiac' },
+  { value: 'Lamborghini', label: 'Lamborghini' },
+  { value: 'Audi', label: 'Audi' },
+  { value: 'BMW', label: 'BMW' },
+  { value: 'Chevrolet', label: 'Chevrolet' },
+  { value: 'Chrysler', label: 'Chrysler' },
+  { value: 'Kia', label: 'Kia' },
 ];
-const defaultOption = options[0];
 
 const CatalogList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [cityCar, setCityCar] = useState('');
-  const [modalCar, setModalCar] = useState("");
+  const [modalCar, setModalCar] = useState('');
   const [accessories, setAccessories] = useState(null);
   const [functionalities, setFunctionalities] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [page, setPage] = useState(2);
   const error = useSelector(selectError);
   const cars = useSelector(selectItems);
   const favorCars = useSelector(selectFavorite);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
-  const [page, setPage] = useState(2);
-  
+  const userFilteredCar = useSelector(selectVisibleCar);
 
+  
   function modalOpen(id) {
     let carChoice = cars.flat().find(car => car.id === id);
     setModalCar(carChoice);
@@ -72,7 +79,7 @@ const CatalogList = () => {
     const city = cityCar.split(',', 1);
     setCityCar(city);
 
-    const acsseor = carChoice.accessories.map(el => " | " + el);
+    const acsseor = carChoice.accessories.map(el => ' | ' + el);
     setAccessories(acsseor);
 
     const funtional = carChoice.functionalities.map(el => ' | ' + el);
@@ -87,12 +94,13 @@ const CatalogList = () => {
 
   function addCarFavorite(id) {
     let carChoice = cars.flat().find(car => car.id === id);
-    const inFavorit = favorCars.some(e => e.id === id)
+    const inFavorit = favorCars.some(e => e.id === id);
     if (inFavorit === true) {
       return toast.info('The car is already added to the favorites');
     }
-    dispatch(addToFavorite(carChoice));   
-  }
+    dispatch(addToFavorite(carChoice));
+  } 
+  
 
   return (
     <>
@@ -109,13 +117,19 @@ const CatalogList = () => {
         theme="light"
       />
       <DropdownBox>
-        <DropdownLabel>Car brand</DropdownLabel>
-        <Dropdown
-          options={options}
-          // onChange={this._onSelect}
-          value={defaultOption}
-          placeholder="Select an option"
-        />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: "end" }}>
+          <div>
+            <DropdownLabel>Car brand</DropdownLabel>
+            <DropdownInput
+              defaultValue={selectedOption}
+              onChange={setSelectedOption}
+              options={options}
+              placeholder="Enter the text"
+            />
+          </div>
+
+          <DropdownBtn onClick={() => dispatch(changeFilter(selectedOption))}>Search</DropdownBtn>
+        </div>
       </DropdownBox>
 
       {isLoading ? (
@@ -125,9 +139,9 @@ const CatalogList = () => {
       ) : (
         <Section>
           <List>
-            {cars &&
+            {userFilteredCar &&
               !error &&
-              cars
+              userFilteredCar
                 .flat()
                 .map(
                   ({

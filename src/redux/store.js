@@ -10,6 +10,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { configureStore } from '@reduxjs/toolkit';
 import { carsReducer } from './carsReducer';
+import { filterReducer } from './filterReducer';
 
 const carsPersistConfig = {
   key: 'cars',
@@ -20,6 +21,7 @@ const carsPersistConfig = {
 export const store = configureStore({
   reducer: {
     cars: persistReducer(carsPersistConfig, carsReducer),
+    filter: filterReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
