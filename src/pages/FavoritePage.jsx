@@ -1,3 +1,4 @@
+import Favorite from "components/Favorite/Favorite";
 
 
 
@@ -5,8 +6,9 @@ const FavoritePage = () => {
 
 
   return (
-    <h2>FAVORITE PAGE</h2>
-
+    <>
+    <Favorite />
+    </>
   )
 }
 

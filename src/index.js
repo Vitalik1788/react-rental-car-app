@@ -4,7 +4,8 @@ import { App } from 'components/App';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from 'redux/store';
+import { persistor, store } from 'redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/react-modal/3.14.3/react-modal.min.js"
@@ -17,8 +18,10 @@ import { store } from 'redux/store';
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
     <BrowserRouter basename="/react-rental-car-app">
-      <Provider store={store}>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
       <App />
+      </PersistGate>
       </Provider>
     </BrowserRouter>
   // </React.StrictMode>

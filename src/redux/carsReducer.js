@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCars } from './carsOperation';
+import { addToFavorite, getCars } from './carsOperation';
 
 const carsSlice = createSlice({
   name: 'cars',
   initialState: {
     items: null,
-    item: {},
+    favorite: [],
     isLoading: false,
     error: null,
   },
@@ -21,7 +21,10 @@ const carsSlice = createSlice({
       .addCase(getCars.rejected, (state, {payload}) => {
         state.error = payload;
         state.isLoading = false;
-      })      
+      })
+      .addCase(addToFavorite.fulfilled, (state, { payload }) => {
+        state.favorite.push(payload);
+    })
   },
 });
 

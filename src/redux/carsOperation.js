@@ -15,3 +15,16 @@ export const getCars = createAsyncThunk(
   }
 );
 
+export const addToFavorite = createAsyncThunk(
+  "cars/addCar",
+  async (car, { rejectWithValue }) => {
+    try {
+      if (car) {
+        return car;
+      }
+    } catch (error) {
+      rejectWithValue(error.message);
+    }
+  }
+)
+

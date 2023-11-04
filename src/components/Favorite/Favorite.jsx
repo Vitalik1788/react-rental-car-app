@@ -1,40 +1,33 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectError, selectFavorite, selectIsLoading, selectItems } from 'redux/selectors';
+import { Section } from 'components/CatalogList/CatalogList.styled';
+import { useSelector } from 'react-redux';
+import { selectError, selectFavorite } from 'redux/selectors';
 import {
-  CatalogItem,
-  Model,
-  List,
-  Section,
-  CatalogImage,
   Button,
   CarDetails,
-  StyleModal,
-  ModalIMG,
+  CatalogImage,
+  CatalogItem,
+  List,
   ModalBtn,
+  ModalIMG,
+  Model,
   RentalConditionItem,
   RentalConditionList,
-  LoadMore,
-} from './CatalogList.styled';
-import { AiOutlineHeart, AiOutlineClose } from 'react-icons/ai';
-import Spinner from 'components/Spinner/Spinner';
-import { addToFavorite } from 'redux/carsOperation';
-import { ToastContainer, toast } from 'react-toastify';
+  StyleModal,
+} from './Favorite.styled';
+import { AiOutlineClose, AiOutlineHeart } from 'react-icons/ai';
+import { useState } from 'react';
 
-const CatalogList = () => {
+const Favorite = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [cityCar, setCityCar] = useState('');
-  const [modalCar, setModalCar] = useState("");
-  const error = useSelector(selectError);
-  const cars = useSelector(selectItems);
-  const favorCars = useSelector(selectFavorite);
-  const isLoading = useSelector(selectIsLoading);
-  const dispatch = useDispatch();
+  const [modalCar, setModalCar] = useState('');
+  const favoriteCars = useSelector(selectFavorite);  
+  const error = useSelector(selectError);   
 
-  
+ 
 
   function modalOpen(id) {
-    let carChoice = cars.find(car => car.id === id);
+    let carChoice = favoriteCars.find(car => car.id === id);
     setModalCar(carChoice);
     const indexCar = carChoice.address.indexOf(',');
     const cityCar = carChoice.address.slice(indexCar + 2);
@@ -47,84 +40,69 @@ const CatalogList = () => {
     setIsOpen(false);
   }
 
-  function addCarFavorite(id) {
-    let carChoice = cars.find(car => car.id === id);
-    const inFavorit = favorCars.some(e => e.id === id)
-    if (inFavorit === true) {
-      return toast.info('The car is already added to the favorites');
-    }
-    dispatch(addToFavorite(carChoice));   
-  }
+
 
   return (
     <>
-      <ToastContainer />
-      {isLoading ? (
-        <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-          <Spinner />
-        </div>
-      ) : (
-        <Section>
-          <List>
-            {cars &&
-              !error &&
-              cars.map(
-                ({
-                  id,
-                  img,
-                  make,
-                  model,
-                  year,
-                  rentalPrice,
-                  address,
-                  rentalCompany,
-                  type,
-                  mileage,
-                  functionalities,
-                }) => {
-                  const index = address.indexOf(',');
-                  const city = address.slice(index + 2).split(',', 1);
+      {favoriteCars ? (<Section>
+        <List>
+          {favoriteCars &&
+            !error &&
+            favoriteCars.map(
+              ({
+                id,
+                img,
+                make,
+                model,
+                year,
+                rentalPrice,
+                address,
+                rentalCompany,
+                type,
+                mileage,
+                functionalities,
+              }) => {
+                const index = address.indexOf(',');
+                const city = address.slice(index + 2).split(',', 1);
 
-                  return (
-                    <CatalogItem key={id}>
-                      <CatalogImage src={img} alt={make} />
-                      <div
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                        }}
-                      >
-                        <Model>
-                          {make} {model}, {year}
-                        </Model>
-                        <Model>{rentalPrice}</Model>
-                      </div>
-                      <CarDetails>
-                        {city} | Ukraine | {rentalCompany} | {type} |{' '}
-                        {mileage.toLocaleString('de-DE')} | {functionalities[0]}
-                      </CarDetails>
-                      <Button type="button" onClick={() => modalOpen(id)}>
-                        Learn more
-                      </Button>
-                      <AiOutlineHeart
-                        size={18}
-                        color="white"
-                        style={{
-                          position: 'absolute',
-                          top: '14px',
-                          right: '14px',
-                          cursor: 'pointer',
-                        }}
-                        onClick={() => addCarFavorite(id)}
-                      />
-                    </CatalogItem>
-                  );
-                }
-              )}
-          </List>
-          <LoadMore type="button">Load More</LoadMore>
-        </Section>
-      )}
+                return (
+                  <CatalogItem key={id}>
+                    <CatalogImage src={img} alt={make} />
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <Model>
+                        {make} {model}, {year}
+                      </Model>
+                      <Model>{rentalPrice}</Model>
+                    </div>
+                    <CarDetails>
+                      {city} | Ukraine | {rentalCompany} | {type} |{' '}
+                      {mileage.toLocaleString('de-DE')} | {functionalities[0]}
+                    </CarDetails>
+                    <Button type="button" onClick={() => modalOpen(id)}>
+                      Learn more
+                    </Button>
+                    <AiOutlineHeart
+                      size={18}
+                      color="white"
+                      style={{
+                        position: 'absolute',
+                        top: '14px',
+                        right: '14px',
+                        cursor: 'pointer',
+                      }}
+                    />
+                  </CatalogItem>
+                );
+              }
+            )}
+        </List>
+      </Section>) : <h1 style={{textAlign: "center", paddingTop: 80}}>NO CARS IN FAVORITE, ADD FIRST FROM CATALOG</h1>}
+      
 
       <StyleModal
         isOpen={isOpen}
@@ -268,4 +246,4 @@ const CatalogList = () => {
   );
 };
 
-export default CatalogList;
+export default Favorite;
