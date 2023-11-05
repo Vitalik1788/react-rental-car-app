@@ -124,7 +124,7 @@ const CatalogList = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="dark"
       />
       <DropdownBox>
         <div
