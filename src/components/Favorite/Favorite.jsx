@@ -34,10 +34,12 @@ const Favorite = () => {
     const city = cityCar.split(',', 1);
     setCityCar(city);
     setIsOpen(true);
+    document.body.style.overflowY = 'hidden';
   }
 
   function modalClose() {
     setIsOpen(false);
+    document.body.style.overflowY = 'unset';
   }
 
   function deleteCar(id) {
@@ -66,7 +68,6 @@ const Favorite = () => {
                   functionalities,
                 }) => {
                   const index = address.indexOf(',');
-                  const city = address.slice(index + 2).split(',', 1);
 
                   return (
                     <CatalogItem key={id}>
@@ -83,7 +84,7 @@ const Favorite = () => {
                         <Model>{rentalPrice}</Model>
                       </div>
                       <CarDetails>
-                        {city} | Ukraine | {rentalCompany} | {type} |{' '}
+                        {address.slice(index + 2).split(',', 1)} | Ukraine | {rentalCompany} | {type} |{' '}
                         {mileage.toLocaleString('de-DE')} | {functionalities[0]}
                       </CarDetails>
                       <Button type="button" onClick={() => modalOpen(id)}>
@@ -93,6 +94,7 @@ const Favorite = () => {
                         size={18}
                         color="#3470FF"
                         style={{
+                          padding: '5px',
                           position: 'absolute',
                           top: '14px',
                           right: '14px',
