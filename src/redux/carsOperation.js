@@ -1,13 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://6543bfb301b5e279de20e540.mockapi.io/api';
-
 export const getCars = createAsyncThunk(
   'cars/getAllCars',
-  async (_, { rejectWithValue }) => {
+  async (page = 1, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/cars?limit=12&page=1');
+      const url = new URL(
+        'https://6543bfb301b5e279de20e540.mockapi.io/api/cars'
+      );
+      url.searchParams.append('page', page);
+      url.searchParams.append('limit', 12);
+      const { data } = await axios.get(`${url}`);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -17,9 +20,14 @@ export const getCars = createAsyncThunk(
 
 export const loadMore = createAsyncThunk(
   'cars/loadMore',
-  async (page, { rejectWithValue }) => {
+  async (page=2, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/cars?limit=12&page=${page}`);
+      const url = new URL(
+        'https://6543bfb301b5e279de20e540.mockapi.io/api/cars'
+      );
+      url.searchParams.append('page', page);
+      url.searchParams.append('limit', 12);
+      const { data } = await axios.get(`${url}`);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

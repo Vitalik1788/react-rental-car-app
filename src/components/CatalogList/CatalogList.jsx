@@ -74,7 +74,7 @@ const CatalogList = () => {
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
   const userFilteredCar = useSelector(selectVisibleCar);
-  const favId = useSelector(selectCarId);  
+  const favId = useSelector(selectCarId);
 
   function modalOpen(id) {
     let carChoice = cars.flat().find(car => car.id === id);
@@ -91,12 +91,12 @@ const CatalogList = () => {
     setFunctionalities(funtional);
 
     setIsOpen(true);
-    document.body.style.overflowY = "hidden";
+    document.body.style.overflowY = 'hidden';
   }
 
   function modalClose() {
     setIsOpen(false);
-    document.body.style.overflowY = "unset";
+    document.body.style.overflowY = 'unset';
   }
 
   function addCarFavorite(id) {
@@ -110,8 +110,7 @@ const CatalogList = () => {
 
   function deleteCar(id) {
     dispatch(removeFromFavorite(id));
-  }  
-
+  }
 
   return (
     <>
