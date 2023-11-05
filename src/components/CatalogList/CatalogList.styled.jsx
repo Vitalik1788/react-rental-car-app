@@ -29,7 +29,10 @@ export const ModalIMG = styled.img`
   border-radius: 14px;
   box-sizing: border-box;
   @media screen and (max-width: 480px) {
-    width: 50%;
+    height: 180px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 
