@@ -123,7 +123,13 @@ const CatalogList = () => {
         theme="light"
       />
       <DropdownBox>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: "end" }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'end',
+          }}
+        >
           <div>
             <DropdownLabel>Car brand</DropdownLabel>
             <DropdownInput
@@ -134,7 +140,9 @@ const CatalogList = () => {
             />
           </div>
 
-          <DropdownBtn onClick={() => dispatch(changeFilter(selectedOption))}>Search</DropdownBtn>
+          <DropdownBtn onClick={() => dispatch(changeFilter(selectedOption))}>
+            Search
+          </DropdownBtn>
         </div>
       </DropdownBox>
 
@@ -189,27 +197,31 @@ const CatalogList = () => {
                         <Button type="button" onClick={() => modalOpen(id)}>
                           Learn more
                         </Button>
-                        {favId.includes(id) ? <AiFillHeart
-                      size={18}
-                      color="#3470FF"
-                      style={{
-                        position: 'absolute',
-                        top: '14px',
-                        right: '14px',
-                        cursor: 'pointer',
-                      }}
-                      onClick={() => deleteCar(id)}
-                    /> : <AiOutlineHeart
-                          size={18}
-                          color="white"
-                          style={{
-                            position: 'absolute',
-                            top: '14px',
-                            right: '14px',
-                            cursor: 'pointer',
-                          }}
-                          onClick={() => addCarFavorite(id)}
-                        />}                        
+                        {favId.includes(id) ? (
+                          <AiFillHeart
+                            size={18}
+                            color="#3470FF"
+                            style={{
+                              position: 'absolute',
+                              top: '14px',
+                              right: '14px',
+                              cursor: 'pointer',
+                            }}
+                            onClick={() => deleteCar(id)}
+                          />
+                        ) : (
+                          <AiOutlineHeart
+                            size={18}
+                            color="white"
+                            style={{
+                              position: 'absolute',
+                              top: '14px',
+                              right: '14px',
+                              cursor: 'pointer',
+                            }}
+                            onClick={() => addCarFavorite(id)}
+                          />
+                        )}
                       </CatalogItem>
                     );
                   }
@@ -353,7 +365,7 @@ const CatalogList = () => {
             </span>
           </RentalConditionItem>
         </RentalConditionList>
-        <ModalBtn type="button">Rental car</ModalBtn>
+        <ModalBtn href="tel:+380730000000">Rental car</ModalBtn>
         <AiOutlineClose
           onClick={modalClose}
           size={24}

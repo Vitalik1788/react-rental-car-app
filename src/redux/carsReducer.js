@@ -36,6 +36,7 @@ const carsSlice = createSlice({
         const index = state.favorite.findIndex(car => car.id === payload)
         state.favorite.splice(index, 1);
         state.carId.splice(index, 1);
+        toast.success('Car deleted from favorite')
       })
       .addCase(loadMore.fulfilled, (state, { payload }) => {
         state.items.push(payload);

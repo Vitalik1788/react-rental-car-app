@@ -8,10 +8,10 @@ const select = Select;
 const modal = Modal;
 
 export const StyleModal = styled(modal)`
-  position: relative;
+  position: fixed;
   padding: 40px;
   max-width: 541px;
-  height: auto;
+  max-height: 752px;
   border-radius: 24px;
   background-color: #ffffff;
   position: fixed;
@@ -30,7 +30,7 @@ export const StyleModal = styled(modal)`
 export const ModalIMG = styled.img`
   margin-bottom: 14px;
   width: 100%;
-  height: auto;
+  height: 248px;
   border-radius: 14px;
   box-sizing: border-box;
   @media screen and (max-width: 480px) {
@@ -55,7 +55,8 @@ export const RentalConditionItem = styled.li`
   border-radius: 35px;
 `;
 
-export const ModalBtn = styled.button`
+export const ModalBtn = styled.a`
+display: inline-block;
   margin-top:24px;
   padding: 14px 50px;
   border-radius: 12px;
