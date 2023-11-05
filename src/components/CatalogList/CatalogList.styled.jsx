@@ -19,11 +19,7 @@ export const StyleModal = styled(modal)`
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  box-sizing: border-box;
-
-  @media screen and (max-width: 480px) {
-    height: 85%;
-  }
+  box-sizing: border-box;  
 `;
 
 export const ModalIMG = styled.img`
@@ -149,6 +145,7 @@ export const Model = styled.p`
 
 export const CarDetails = styled.p`
   font-family: 'Manrope';
+  height: 50px;
   font-size: 12px;
   line-height: 1.5;
 `;
