@@ -84,7 +84,8 @@ const Favorite = () => {
                         <Model>{rentalPrice}</Model>
                       </div>
                       <CarDetails>
-                        {address.slice(index + 2).split(',', 1)} | Ukraine | {rentalCompany} | {type} |{' '}
+                        {address.slice(index + 2).split(',', 1)} | Ukraine |{' '}
+                        {rentalCompany} | {type} |{' '}
                         {mileage.toLocaleString('de-DE')} | {functionalities[0]}
                       </CarDetails>
                       <Button type="button" onClick={() => modalOpen(id)}>
@@ -154,7 +155,7 @@ const Favorite = () => {
             fontFamily: 'Manrope',
             fontSize: '12px',
             color: 'rgba(18, 20, 23, 0.5)',
-            marginBottom: 14,
+            marginBottom: 12,
           }}
         >
           {`Fuel Consumption: ${modalCar.fuelConsumption}`} |{' '}
@@ -165,7 +166,7 @@ const Favorite = () => {
             fontFamily: 'Manrope',
             fontSize: 14,
             color: '#121417',
-            marginBottom: 24,
+            marginBottom: 16,
             lineHeight: 1.42,
           }}
         >
@@ -188,7 +189,7 @@ const Favorite = () => {
             fontFamily: 'Manrope',
             fontSize: '12px',
             color: 'rgba(18, 20, 23, 0.5)',
-            marginBottom: 24,
+            marginBottom: 16,
           }}
         >
           {modalCar.functionalities}

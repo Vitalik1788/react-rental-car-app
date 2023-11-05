@@ -23,7 +23,7 @@ export const StyleModal = styled(modal)`
 `;
 
 export const ModalIMG = styled.img`
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   width: 100%;
   height: 288px;
   border-radius: 14px;
@@ -107,7 +107,7 @@ export const Model = styled.p`
 
 export const CarDetails = styled.p`
   font-family: 'Manrope';
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
 `;
 

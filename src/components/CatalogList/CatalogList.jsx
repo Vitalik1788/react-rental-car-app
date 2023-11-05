@@ -284,7 +284,7 @@ const CatalogList = () => {
             fontFamily: 'Manrope',
             fontSize: '12px',
             color: 'rgba(18, 20, 23, 0.5)',
-            marginBottom: 14,
+            marginBottom: 12,
           }}
         >
           {`Fuel Consumption: ${modalCar.fuelConsumption}`} |{' '}
@@ -295,7 +295,7 @@ const CatalogList = () => {
             fontFamily: 'Manrope',
             fontSize: 14,
             color: '#121417',
-            marginBottom: 24,
+            marginBottom: 16,
             lineHeight: 1.42,
           }}
         >
@@ -318,7 +318,7 @@ const CatalogList = () => {
             fontFamily: 'Manrope',
             fontSize: '12px',
             color: 'rgba(18, 20, 23, 0.5)',
-            marginBottom: 24,
+            marginBottom: 16,
           }}
         >
           {functionalities}
