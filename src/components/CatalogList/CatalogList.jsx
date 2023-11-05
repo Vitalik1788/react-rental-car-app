@@ -38,6 +38,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { changeFilter } from 'redux/filterOperation';
 
 const options = [
+  { value: " ", label: "Clear filter"},
   { value: 'Buick', label: 'Buick' },
   { value: 'Volvo', label: 'Volvo' },
   { value: 'HUMMER', label: 'HUMMER' },
@@ -146,7 +147,7 @@ const CatalogList = () => {
 
           <DropdownBtn onClick={() => dispatch(changeFilter(selectedOption))}>
             Search
-          </DropdownBtn>
+          </DropdownBtn>         
         </div>
       </DropdownBox>
 

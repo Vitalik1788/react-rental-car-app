@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const getCars = createAsyncThunk(
   'cars/getAllCars',
@@ -28,6 +29,9 @@ export const loadMore = createAsyncThunk(
       url.searchParams.append('page', page);
       url.searchParams.append('limit', 12);
       const { data } = await axios.get(`${url}`);
+      if (data.length === 0) {
+        toast.error("This is end of car list")
+      }
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

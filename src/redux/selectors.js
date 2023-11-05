@@ -16,7 +16,7 @@ export const selectVisibleCar = state => {
   const items = selectItems(state);
   const filter = selectFilter(state);
 
-  if (items.length === 0 && !filter) {
+  if (items.length === 0 && filter === null) {
     return items;
   }
   const normolizedFilter = filter.toLowerCase().trim();
