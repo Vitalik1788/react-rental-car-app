@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-rental-car-app/static/css/main.b2b7bc38.css",
-    "main.js": "/react-rental-car-app/static/js/main.7923a6ca.js",
+    "main.js": "/react-rental-car-app/static/js/main.a400b5ce.js",
     "static/media/jeep-7853620_1920.jpg": "/react-rental-car-app/static/media/jeep-7853620_1920.5e41b6d2eee0d5c0b005.jpg",
     "static/media/car_trip.jpg": "/react-rental-car-app/static/media/car_trip.b9d65ce13b5a3241012c.jpg",
     "static/media/retro_car.jpg": "/react-rental-car-app/static/media/retro_car.2d83f4d838a1527e7f87.jpg",
@@ -9,10 +9,10 @@
     "static/media/header_icon.png": "/react-rental-car-app/static/media/header_icon.7f659756fc0171e14e6d.png",
     "index.html": "/react-rental-car-app/index.html",
     "main.b2b7bc38.css.map": "/react-rental-car-app/static/css/main.b2b7bc38.css.map",
-    "main.7923a6ca.js.map": "/react-rental-car-app/static/js/main.7923a6ca.js.map"
+    "main.a400b5ce.js.map": "/react-rental-car-app/static/js/main.a400b5ce.js.map"
   },
   "entrypoints": [
     "static/css/main.b2b7bc38.css",
-    "static/js/main.7923a6ca.js"
+    "static/js/main.a400b5ce.js"
   ]
 }
