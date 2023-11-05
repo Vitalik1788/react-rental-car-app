@@ -15,8 +15,8 @@ import { filterReducer } from './filterReducer';
 const carsPersistConfig = {
   key: 'cars',
   storage,
-  whitelist: ["favorite", "carId"],
-}
+  whitelist: ['favorite', 'carId'],
+};
 
 export const store = configureStore({
   reducer: {

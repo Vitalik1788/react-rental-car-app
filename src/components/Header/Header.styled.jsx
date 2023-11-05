@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 const navLink = NavLink;
@@ -7,7 +7,7 @@ export const HeaderStyled = styled.header`
   display: flex;
   align-items: center;
   padding-left: 20px;
-  padding-right: 20px; 
+  padding-right: 20px;
 `;
 
 export const IconTitle = styled.p`
@@ -26,8 +26,8 @@ export const Nav = styled.nav`
   @media screen and (max-width: 480px) {
     flex-direction: column;
     gap: 0;
-  }  
-`
+  }
+`;
 
 export const NavLinkStyled = styled(navLink)`
   text-decoration: none;

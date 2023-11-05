@@ -11,7 +11,7 @@ export const CardList = styled.ul`
   margin-top: -48px;
 `;
 
-export const CardBox = styled.li` 
+export const CardBox = styled.li`
   list-style: none;
   flex-basis: calc(100% / 3 - 24px);
   margin-left: 24px;

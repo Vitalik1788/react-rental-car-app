@@ -1,8 +1,7 @@
-import CatalogList from "components/CatalogList/CatalogList";
+import CatalogList from 'components/CatalogList/CatalogList';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getCars } from 'redux/carsOperation';
-
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -10,13 +9,12 @@ const CatalogPage = () => {
   useEffect(() => {
     dispatch(getCars());
   }, [dispatch]);
-  
+
   return (
     <>
-    <CatalogList />
+      <CatalogList />
     </>
-    
-  )
-}
+  );
+};
 
 export default CatalogPage;

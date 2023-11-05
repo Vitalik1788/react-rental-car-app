@@ -1,11 +1,16 @@
-import icon from "../../images/header_icon.png";
+import icon from '../../images/header_icon.png';
 import { HeaderStyled, IconTitle, Nav, NavLinkStyled } from './Header.styled';
 
 const Header = () => {
-  
   return (
     <HeaderStyled>
-      <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         <img src={icon} alt="car-icon" width={120} />
         <IconTitle>Best Car Rent</IconTitle>
       </div>
@@ -16,6 +21,6 @@ const Header = () => {
       </Nav>
     </HeaderStyled>
   );
-}
+};
 
 export default Header;

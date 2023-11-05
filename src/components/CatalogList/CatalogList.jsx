@@ -29,7 +29,11 @@ import {
 } from './CatalogList.styled';
 import { AiOutlineHeart, AiOutlineClose, AiFillHeart } from 'react-icons/ai';
 import Spinner from 'components/Spinner/Spinner';
-import { addToFavorite, loadMore, removeFromFavorite } from 'redux/carsOperation';
+import {
+  addToFavorite,
+  loadMore,
+  removeFromFavorite,
+} from 'redux/carsOperation';
 import { ToastContainer, toast } from 'react-toastify';
 import { changeFilter } from 'redux/filterOperation';
 
@@ -71,8 +75,6 @@ const CatalogList = () => {
   const dispatch = useDispatch();
   const userFilteredCar = useSelector(selectVisibleCar);
   const favId = useSelector(selectCarId);
-  
-
 
   function modalOpen(id) {
     let carChoice = cars.flat().find(car => car.id === id);
@@ -102,8 +104,8 @@ const CatalogList = () => {
       return toast.info('The car is already added to the favorites');
     }
     dispatch(addToFavorite(carChoice));
-  } 
-  
+  }
+
   function deleteCar(id) {
     dispatch(removeFromFavorite(id));
   }

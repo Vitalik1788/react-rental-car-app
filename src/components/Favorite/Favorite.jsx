@@ -22,11 +22,9 @@ const Favorite = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [cityCar, setCityCar] = useState('');
   const [modalCar, setModalCar] = useState('');
-  const favoriteCars = useSelector(selectFavorite);  
-  const error = useSelector(selectError);   
+  const favoriteCars = useSelector(selectFavorite);
+  const error = useSelector(selectError);
   const dispatch = useDispatch();
-
- 
 
   function modalOpen(id) {
     let carChoice = favoriteCars.find(car => car.id === id);
@@ -43,72 +41,76 @@ const Favorite = () => {
   }
 
   function deleteCar(id) {
-    dispatch(removeFromFavorite(id))
+    dispatch(removeFromFavorite(id));
   }
-
 
   return (
     <>
-      {favoriteCars.length !== 0 ? (<Section>
-        <List>
-          {favoriteCars &&
-            !error &&
-            favoriteCars.map(
-              ({
-                id,
-                img,
-                make,
-                model,
-                year,
-                rentalPrice,
-                address,
-                rentalCompany,
-                type,
-                mileage,
-                functionalities,
-              }) => {
-                const index = address.indexOf(',');
-                const city = address.slice(index + 2).split(',', 1);
+      {favoriteCars.length !== 0 ? (
+        <Section>
+          <List>
+            {favoriteCars &&
+              !error &&
+              favoriteCars.map(
+                ({
+                  id,
+                  img,
+                  make,
+                  model,
+                  year,
+                  rentalPrice,
+                  address,
+                  rentalCompany,
+                  type,
+                  mileage,
+                  functionalities,
+                }) => {
+                  const index = address.indexOf(',');
+                  const city = address.slice(index + 2).split(',', 1);
 
-                return (
-                  <CatalogItem key={id}>
-                    <CatalogImage src={img} alt={make} />
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                      }}
-                    >
-                      <Model>
-                        {make} {model}, {year}
-                      </Model>
-                      <Model>{rentalPrice}</Model>
-                    </div>
-                    <CarDetails>
-                      {city} | Ukraine | {rentalCompany} | {type} |{' '}
-                      {mileage.toLocaleString('de-DE')} | {functionalities[0]}
-                    </CarDetails>
-                    <Button type="button" onClick={() => modalOpen(id)}>
-                      Learn more
-                    </Button>
-                    <AiFillHeart
-                      size={18}
-                      color="#3470FF"
-                      style={{
-                        position: 'absolute',
-                        top: '14px',
-                        right: '14px',
-                        cursor: 'pointer',
-                      }}
-                      onClick={() => deleteCar(id)}
-                    />
-                  </CatalogItem>
-                );
-              }
-            )}
-        </List>
-      </Section>) : <h1 style={{textAlign: "center", paddingTop: 80}}>NO CARS IN FAVORITE, ADD FIRST FROM CATALOG</h1>}
-      
+                  return (
+                    <CatalogItem key={id}>
+                      <CatalogImage src={img} alt={make} />
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        <Model>
+                          {make} {model}, {year}
+                        </Model>
+                        <Model>{rentalPrice}</Model>
+                      </div>
+                      <CarDetails>
+                        {city} | Ukraine | {rentalCompany} | {type} |{' '}
+                        {mileage.toLocaleString('de-DE')} | {functionalities[0]}
+                      </CarDetails>
+                      <Button type="button" onClick={() => modalOpen(id)}>
+                        Learn more
+                      </Button>
+                      <AiFillHeart
+                        size={18}
+                        color="#3470FF"
+                        style={{
+                          position: 'absolute',
+                          top: '14px',
+                          right: '14px',
+                          cursor: 'pointer',
+                        }}
+                        onClick={() => deleteCar(id)}
+                      />
+                    </CatalogItem>
+                  );
+                }
+              )}
+          </List>
+        </Section>
+      ) : (
+        <h1 style={{ textAlign: 'center', paddingTop: 80 }}>
+          NO CARS IN FAVORITE, ADD FIRST FROM CATALOG
+        </h1>
+      )}
 
       <StyleModal
         isOpen={isOpen}

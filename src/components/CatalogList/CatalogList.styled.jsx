@@ -19,12 +19,11 @@ export const StyleModal = styled(modal)`
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  box-sizing: border-box;  
+  box-sizing: border-box;
 
   @media screen and (max-width: 480px) {
     height: 85%;
   }
-  
 `;
 
 export const ModalIMG = styled.img`
@@ -42,8 +41,7 @@ export const RentalConditionList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-
-`
+`;
 
 export const RentalConditionItem = styled.li`
   list-style: none;
@@ -56,8 +54,8 @@ export const RentalConditionItem = styled.li`
 `;
 
 export const ModalBtn = styled.a`
-display: inline-block;
-  margin-top:24px;
+  display: inline-block;
+  margin-top: 24px;
   padding: 14px 50px;
   border-radius: 12px;
   margin-right: auto;
@@ -84,15 +82,14 @@ export const DropdownBox = styled.div`
   padding-top: 50px;
   margin-left: auto;
   margin-right: auto;
-  
-  `
+`;
 export const DropdownLabel = styled.p`
   margin-bottom: 8px;
-  font-family: "Manrope";
+  font-family: 'Manrope';
   font-size: 14px;
   font-weight: 500;
   line-height: 1.29;
-  `;
+`;
 
 export const DropdownInput = styled(select)`
   max-width: 224px;
@@ -102,8 +99,6 @@ export const DropdownInput = styled(select)`
   font-weight: 500;
   line-height: 1.25;
   border-radius: 14px;
-
-  
 `;
 
 export const DropdownBtn = styled.button`
@@ -111,8 +106,7 @@ export const DropdownBtn = styled.button`
   border-radius: 12px;
   background-color: #3470ff;
   color: #ffffff;
-`; 
-
+`;
 
 export const List = styled.ul`
   display: flex;

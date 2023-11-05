@@ -1,10 +1,10 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 axios.defaults.baseURL = 'https://6543bfb301b5e279de20e540.mockapi.io/api';
 
 export const getCars = createAsyncThunk(
-  "cars/getAllCars",
+  'cars/getAllCars',
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get('/cars?limit=12&page=1');
@@ -16,7 +16,7 @@ export const getCars = createAsyncThunk(
 );
 
 export const loadMore = createAsyncThunk(
-  "cars/loadMore",
+  'cars/loadMore',
   async (page, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/cars?limit=12&page=${page}`);
@@ -25,10 +25,10 @@ export const loadMore = createAsyncThunk(
       return rejectWithValue(error.message);
     }
   }
-)
+);
 
 export const addToFavorite = createAsyncThunk(
-  "cars/addCar",
+  'cars/addCar',
   async (car, { rejectWithValue }) => {
     try {
       if (car) {
@@ -38,18 +38,17 @@ export const addToFavorite = createAsyncThunk(
       rejectWithValue(error.message);
     }
   }
-)
+);
 
 export const removeFromFavorite = createAsyncThunk(
-  "cars/removeCar",
+  'cars/removeCar',
   async (carId, { rejectWithValue }) => {
     try {
       if (carId) {
         return carId;
       }
     } catch (error) {
-      rejectWithValue(error.message)
+      rejectWithValue(error.message);
     }
   }
-)
-
+);

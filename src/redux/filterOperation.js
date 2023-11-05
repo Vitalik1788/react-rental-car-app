@@ -1,15 +1,13 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-
-
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const changeFilter = createAsyncThunk(
   'filter/makeFilter',
-  async ({value}, { rejectWithValue }) => {
+  async ({ value }, { rejectWithValue }) => {
     try {
       if (value) {
         console.log(value);
         return value;
-      }      
+      }
     } catch (error) {
       rejectWithValue(error.message);
     }

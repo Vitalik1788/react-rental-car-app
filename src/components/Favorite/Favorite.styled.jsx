@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import Modal from 'react-modal';
 
 //MODAL STYLES
@@ -10,7 +10,7 @@ export const StyleModal = styled(modal)`
   padding: 40px;
   max-width: 541px;
   height: auto;
-  height:fit-content;
+  height: fit-content;
   height: auto;
   border-radius: 24px;
   background-color: #ffffff;
@@ -34,8 +34,7 @@ export const RentalConditionList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-
-`
+`;
 
 export const RentalConditionItem = styled.li`
   list-style: none;
@@ -48,7 +47,7 @@ export const RentalConditionItem = styled.li`
 `;
 
 export const ModalBtn = styled.button`
-  margin-top:24px;
+  margin-top: 24px;
   padding: 14px 50px;
   border-radius: 12px;
   margin-right: auto;
@@ -66,7 +65,6 @@ export const ModalBtn = styled.button`
 `;
 
 // MODAL STYLES
-
 
 export const List = styled.ul`
   display: flex;

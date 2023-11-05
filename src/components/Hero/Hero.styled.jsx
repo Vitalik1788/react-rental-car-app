@@ -1,6 +1,5 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import heroImage from '../../images/car_trip.jpg';
-
 
 export const HeroBox = styled.section`
   height: 700px;
@@ -8,8 +7,7 @@ export const HeroBox = styled.section`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
-`
+`;
 
 export const HeroTitle = styled.h1`
   padding-left: 15px;

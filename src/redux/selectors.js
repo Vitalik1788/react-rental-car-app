@@ -1,4 +1,3 @@
-
 export const selectItems = state => state.cars.items;
 
 export const selectIsLoading = state => state.cars.isLoading;
@@ -16,11 +15,12 @@ export const selectCarId = state => state.cars.carId;
 export const selectVisibleCar = state => {
   const items = selectItems(state);
   const filter = selectFilter(state);
-  
+
   if (items.length === 0 && !filter) {
     return items;
   }
   const normolizedFilter = filter.toLowerCase().trim();
-  return items.flat().filter(item => item.make.toLowerCase().includes(normolizedFilter));
-
-}
+  return items
+    .flat()
+    .filter(item => item.make.toLowerCase().includes(normolizedFilter));
+};
