@@ -20,6 +20,10 @@ export const StyleModal = styled(modal)`
   margin-right: -50%;
   transform: translate(-50%, -50%);
   box-sizing: border-box;  
+
+  @media screen and (max-width: 480px) {
+    padding: 20px;
+  }
 `;
 
 export const ModalIMG = styled.img`

@@ -20,6 +20,10 @@ export const StyleModal = styled(modal)`
   margin-right: -50%;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
+
+  @media screen and (max-width: 480px) {
+    padding: 20px;
+  }
 `;
 
 export const ModalIMG = styled.img`
@@ -28,6 +32,12 @@ export const ModalIMG = styled.img`
   height: 288px;
   border-radius: 14px;
   box-sizing: border-box;
+  @media screen and (max-width: 480px) {
+    height: 180px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
 export const RentalConditionList = styled.ul`
