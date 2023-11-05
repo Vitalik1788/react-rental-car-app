@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  selectCarId,
   selectError,
   selectFavorite,
   selectIsLoading,
@@ -26,9 +27,9 @@ import {
   DropdownInput,
   DropdownBtn,
 } from './CatalogList.styled';
-import { AiOutlineHeart, AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineClose, AiFillHeart } from 'react-icons/ai';
 import Spinner from 'components/Spinner/Spinner';
-import { addToFavorite, loadMore } from 'redux/carsOperation';
+import { addToFavorite, loadMore, removeFromFavorite } from 'redux/carsOperation';
 import { ToastContainer, toast } from 'react-toastify';
 import { changeFilter } from 'redux/filterOperation';
 
@@ -69,8 +70,10 @@ const CatalogList = () => {
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
   const userFilteredCar = useSelector(selectVisibleCar);
-
+  const favId = useSelector(selectCarId);
   
+
+
   function modalOpen(id) {
     let carChoice = cars.flat().find(car => car.id === id);
     setModalCar(carChoice);
@@ -101,6 +104,9 @@ const CatalogList = () => {
     dispatch(addToFavorite(carChoice));
   } 
   
+  function deleteCar(id) {
+    dispatch(removeFromFavorite(id));
+  }
 
   return (
     <>
@@ -158,6 +164,7 @@ const CatalogList = () => {
                     functionalities,
                   }) => {
                     const index = address.indexOf(',');
+                    console.log(favId.includes(id));
 
                     return (
                       <CatalogItem key={id}>
@@ -182,7 +189,17 @@ const CatalogList = () => {
                         <Button type="button" onClick={() => modalOpen(id)}>
                           Learn more
                         </Button>
-                        <AiOutlineHeart
+                        {favId.includes(id) ? <AiFillHeart
+                      size={18}
+                      color="#3470FF"
+                      style={{
+                        position: 'absolute',
+                        top: '14px',
+                        right: '14px',
+                        cursor: 'pointer',
+                      }}
+                      onClick={() => deleteCar(id)}
+                    /> : <AiOutlineHeart
                           size={18}
                           color="white"
                           style={{
@@ -192,7 +209,7 @@ const CatalogList = () => {
                             cursor: 'pointer',
                           }}
                           onClick={() => addCarFavorite(id)}
-                        />
+                        />}                        
                       </CatalogItem>
                     );
                   }

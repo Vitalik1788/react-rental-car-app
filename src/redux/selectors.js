@@ -11,6 +11,8 @@ export const selectFavorite = state => state.cars.favorite;
 
 export const selectFilter = state => state.filter.filter;
 
+export const selectCarId = state => state.cars.carId;
+
 export const selectVisibleCar = state => {
   const items = selectItems(state);
   const filter = selectFilter(state);

@@ -94,13 +94,15 @@ export const DropdownLabel = styled.p`
   `;
 
 export const DropdownInput = styled(select)`
-  width: 224px;
+  max-width: 224px;
   margin-right: 18px;
   font-family: 'Manrope';
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
   border-radius: 14px;
+
+  
 `;
 
 export const DropdownBtn = styled.button`

@@ -7,6 +7,7 @@ const carsSlice = createSlice({
   initialState: {
     items: [],
     favorite: [],
+    carId: [],
     isLoading: false,
     error: null,
   },
@@ -28,11 +29,13 @@ const carsSlice = createSlice({
       })
       .addCase(addToFavorite.fulfilled, (state, { payload }) => {
         state.favorite.push(payload);
+        state.carId.push(payload.id);
         toast.success("Car added to favorite")
       })
       .addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
         const index = state.favorite.findIndex(car => car.id === payload)
         state.favorite.splice(index, 1);
+        state.carId.splice(index, 1);
       })
       .addCase(loadMore.fulfilled, (state, { payload }) => {
         state.items.push(payload);

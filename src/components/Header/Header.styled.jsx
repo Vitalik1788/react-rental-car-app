@@ -36,7 +36,7 @@ export const NavLinkStyled = styled(navLink)`
   font-weight: 500;
   color: black;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 768px) {
     font-size: 16px;
     margin-bottom: 5px;
   }
